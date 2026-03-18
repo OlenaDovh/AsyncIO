@@ -7,11 +7,13 @@ from typing import List, Any
 REQ_NUM: int = 500
 DELAY: float = 0.1
 
+
 def sync_task() -> None:
     """
     Performs a synchronous sleep task.
     """
     time.sleep(DELAY)
+
 
 def run_sync() -> None:
     """
@@ -22,11 +24,13 @@ def run_sync() -> None:
         sync_task()
     print(f"Sync: {round(time.time() - start, 2)} сек")
 
+
 def thread_task() -> None:
     """
     Performs a sleep task intended for execution in a thread.
     """
     time.sleep(DELAY)
+
 
 def run_threading() -> None:
     """
@@ -42,6 +46,7 @@ def run_threading() -> None:
         t.join()
     print(f"Threading: {round(time.time() - start, 2)} сек")
 
+
 def process_task(_: Any) -> None:
     """
     Performs a sleep task in a separate process.
@@ -49,6 +54,7 @@ def process_task(_: Any) -> None:
         _: Placeholder argument for pool.map.
     """
     time.sleep(DELAY)
+
 
 def run_multiprocessing() -> None:
     """
@@ -59,11 +65,13 @@ def run_multiprocessing() -> None:
         pool.map(process_task, range(REQ_NUM))
     print(f"Multiprocessing: {round(time.time() - start, 2)} сек")
 
+
 async def async_task() -> None:
     """
     Performs an asynchronous sleep task.
     """
     await asyncio.sleep(DELAY)
+
 
 async def run_async() -> None:
     """
@@ -74,6 +82,7 @@ async def run_async() -> None:
     await asyncio.gather(*tasks)
     end_time: float = time.time()
     print(f"Asyncio: {round(end_time - start, 2)} сек")
+
 
 if __name__ == "__main__":
     run_sync()
